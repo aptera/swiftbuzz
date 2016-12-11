@@ -1,36 +1,28 @@
-//
-//  fizzbuzzTests.swift
-//  fizzbuzzTests
-//
-//  Created by Jon Fazzaro on 12/11/16.
-//  Copyright © 2016 Fazzaro. All rights reserved.
-//
 
-import XCTest
+import Quick
+import Nimble
 @testable import fizzbuzz
 
-class fizzbuzzTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+class fizzBuzzSpec : QuickSpec {
+    override func spec() {
+        describe("The fizz buzz player") {
+            expectResult(expected: "1", number: 1)
+            expectResult(expected: "2", number: 2)
+            expectResult(expected: "fizz", number: 3)
+            expectResult(expected: "buzz", number: 5)
+            expectResult(expected: "fizz", number: 6)
+            expectResult(expected: "buzz", number: 10)
+            expectResult(expected: "fizzbuzz", number: 15)
+            expectResult(expected: "fizzbuzz", number: 90)
         }
     }
     
+    func expectResult(expected: String, number: Int) {
+        describe("given \(number)") {
+            it ("returns \(expected)") {
+                let player = FizzBuzzPlayer()
+                expect(player.play(number: number)).to(equal(expected))
+            }
+        }
+    }
 }

@@ -5,12 +5,20 @@ class FizzBuzzPlayer {
         return word.isEmpty ? String(number) : word
     }
     
-    func fizzbuzz(number:Int) -> String {
-        return wordFor(number: number, factor: 3, word: "fizz")
-             + wordFor(number: number, factor: 5, word: "buzz")
+    private func fizzbuzz(number:Int) -> String {
+        return fizz(number: number)
+             + buzz(number: number)
     }
     
-    func wordFor(number:Int, factor:Int, word:String) -> String {
+    private func fizz(number: Int) -> String {
+        return wordFor(number: number, factor: 3, word: "fizz")
+    }
+    
+    private func buzz(number: Int) -> String {
+        return wordFor(number: number, factor: 5, word: "buzz")
+    }
+    
+    private func wordFor(number:Int, factor:Int, word:String) -> String {
         return number % factor == 0 ? word : ""
     }
 }
